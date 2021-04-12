@@ -1,5 +1,6 @@
 package me.kecker.jlichess.model;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import lombok.Getter;
 import lombok.ToString;
@@ -13,5 +14,7 @@ public class Account {
   private String username;
   private boolean online;
   private Map<GameMode, PerformanceSummary> perfs;
+  private LocalDateTime createdAt;
+  private LocalDateTime seenAt;
 
 }
