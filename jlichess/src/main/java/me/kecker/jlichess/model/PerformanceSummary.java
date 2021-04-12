@@ -1,10 +1,8 @@
 package me.kecker.jlichess.model;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Value;
 
-@Getter
-@ToString
+@Value
 public class PerformanceSummary {
 
   private int games;
