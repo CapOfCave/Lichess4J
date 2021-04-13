@@ -43,6 +43,6 @@ public class AccountRetrofitServiceTest {
 
         Account result = this.objectUnderTest.getAccountInfo(BEARER_TOKEN);
         assertNotNull(result);
-        assertEquals(1234, result.getId());
+        assertEquals("1234", result.getId());
     }
 }
