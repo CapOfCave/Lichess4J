@@ -11,7 +11,7 @@
 	<packaging>jar</packaging>
 
 	<name>jlichess</name>
-	<url>http://www.example.com</url>
+	<url>https://github.com/CapOfCave/JLichess</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,10 +20,14 @@
 
 		<retrofit.version>2.9.0</retrofit.version>
 		<lombok.version>1.18.20</lombok.version>
+		<slf4j.version>1.7.30</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<!-- okhttp.version needs to match okhttp version in retrofit -->
+		<okhttp.version>3.14.9</okhttp.version>
 	</properties>
 
 	<dependencies>
-		<!-- run time dependencies -->
+		<!-- runtime dependencies -->
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>retrofit</artifactId>
@@ -33,6 +37,23 @@
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>converter-gson</artifactId>
 			<version>${retrofit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<!-- version needs to match okhttp version in retrofit -->
+			<version>${okhttp.version}</version>
 		</dependency>
 
 		<!-- compile time dependencies -->
@@ -45,15 +66,9 @@
 
 		<!-- test dependencies -->
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.7.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<version>5.7.1</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
