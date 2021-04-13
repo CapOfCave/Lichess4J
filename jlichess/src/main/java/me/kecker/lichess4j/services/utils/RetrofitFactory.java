@@ -1,17 +1,16 @@
-package me.kecker.jlichess.services.utils;
+package me.kecker.lichess4j.services.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import me.kecker.lichess4j.http.adapters.LocalDateTimeTypeAdapter;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import me.kecker.jlichess.http.adapters.LocalDateTimeTypeAdapter;
 
 public class RetrofitFactory {
 

@@ -1,4 +1,4 @@
-package me.kecker.jlichess.model.enums;
+package me.kecker.lichess4j.model.enums;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;

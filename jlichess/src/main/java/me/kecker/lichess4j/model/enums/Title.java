@@ -1,4 +1,4 @@
-package me.kecker.jlichess.model.enums;
+package me.kecker.lichess4j.model.enums;
 
 public enum Title {
     GM,

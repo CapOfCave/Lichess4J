@@ -1,4 +1,4 @@
-package me.kecker.jlichess.model;
+package me.kecker.lichess4j.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Value;

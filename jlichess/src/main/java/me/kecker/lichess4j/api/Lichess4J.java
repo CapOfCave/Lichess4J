@@ -1,19 +1,19 @@
-package me.kecker.jlichess.api;
+package me.kecker.lichess4j.api;
 
 import java.io.IOException;
 import lombok.NonNull;
-import me.kecker.jlichess.model.Account;
-import me.kecker.jlichess.services.AccountRetrofitService;
+import me.kecker.lichess4j.model.Account;
+import me.kecker.lichess4j.services.AccountRetrofitService;
 
 /**
  * API class for the java lichess wrapper.
  */
-public class JLichess {
+public class Lichess4J {
     private @NonNull String bearerToken;
 
     private AccountService accountApi;
 
-    public JLichess(@NonNull String bearerToken) {
+    public Lichess4J(@NonNull String bearerToken) {
         this.bearerToken = bearerToken;
         this.setup();
     }

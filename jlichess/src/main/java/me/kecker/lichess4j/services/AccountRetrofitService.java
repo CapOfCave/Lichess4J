@@ -1,14 +1,13 @@
-package me.kecker.jlichess.services;
+package me.kecker.lichess4j.services;
 
 import java.io.IOException;
+import me.kecker.lichess4j.api.AccountService;
+import me.kecker.lichess4j.config.ApiUrl;
+import me.kecker.lichess4j.http.clients.AccountHttpClient;
+import me.kecker.lichess4j.model.Account;
+import me.kecker.lichess4j.services.utils.RetrofitFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
-import me.kecker.jlichess.api.AccountService;
-import me.kecker.jlichess.config.ApiUrl;
-import me.kecker.jlichess.http.clients.AccountHttpClient;
-import me.kecker.jlichess.model.Account;
-import me.kecker.jlichess.services.utils.RetrofitFactory;
 
 public class AccountRetrofitService implements AccountService {
 

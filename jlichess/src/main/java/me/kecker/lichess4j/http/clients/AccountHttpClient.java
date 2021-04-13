@@ -1,10 +1,9 @@
-package me.kecker.jlichess.http.clients;
+package me.kecker.lichess4j.http.clients;
 
+import me.kecker.lichess4j.model.Account;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-
-import me.kecker.jlichess.model.Account;
 
 public interface AccountHttpClient {
 

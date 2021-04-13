@@ -1,10 +1,10 @@
-package me.kecker.jlichess.model;
+package me.kecker.lichess4j.model;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 import lombok.Value;
-import me.kecker.jlichess.model.enums.GameMode;
-import me.kecker.jlichess.model.enums.Title;
+import me.kecker.lichess4j.model.enums.GameMode;
+import me.kecker.lichess4j.model.enums.Title;
 
 @Value
 public class Account {

@@ -1,4 +1,4 @@
-package me.kecker.jlichess.http.adapters;
+package me.kecker.lichess4j.http.adapters;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

@@ -1,18 +1,18 @@
-package me.kecker.jlichess.services;
+package me.kecker.lichess4j.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import me.kecker.lichess4j.model.Account;
+import me.kecker.lichess4j.services.AccountRetrofitService;
+import me.kecker.lichess4j.services.utils.RetrofitFactory;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import retrofit2.Retrofit;
-
-import me.kecker.jlichess.model.Account;
-import me.kecker.jlichess.services.utils.RetrofitFactory;
 
 public class AccountRetrofitServiceTest {
 

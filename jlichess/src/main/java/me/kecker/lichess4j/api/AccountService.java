@@ -1,7 +1,7 @@
-package me.kecker.jlichess.api;
+package me.kecker.lichess4j.api;
 
 import java.io.IOException;
-import me.kecker.jlichess.model.Account;
+import me.kecker.lichess4j.model.Account;
 
 public interface AccountService {
 

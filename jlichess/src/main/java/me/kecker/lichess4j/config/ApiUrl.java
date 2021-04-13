@@ -1,4 +1,4 @@
-package me.kecker.jlichess.config;
+package me.kecker.lichess4j.config;
 
 public class ApiUrl {
 
