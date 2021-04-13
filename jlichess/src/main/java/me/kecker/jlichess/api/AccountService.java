@@ -5,5 +5,5 @@ import me.kecker.jlichess.model.Account;
 
 public interface AccountService {
 
-  Account getAccountInfo(String bearerToken) throws IOException;
+    Account getAccountInfo(String bearerToken) throws IOException;
 }
