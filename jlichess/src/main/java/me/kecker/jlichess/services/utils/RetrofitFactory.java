@@ -39,4 +39,8 @@ public class RetrofitFactory {
         cache.put(baseUrl, retrofit);
         return retrofit;
     }
+    
+    public static void clearCache() {
+        cache.clear();
+    }
 }
