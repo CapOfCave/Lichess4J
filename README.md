@@ -6,7 +6,7 @@ A java wrapper for the https://lichess.org/ api
 
 ## Lichess endpoint coverage
 - [ ] Account
-- - [ ] Get my profile
+- - [x] Get my profile
 - - [ ] Get my email address
 - - [ ] Get my preferences
 - - [ ] Get my kid mode status
