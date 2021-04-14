@@ -1,9 +1,7 @@
 package me.kecker.lichess4j.model;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 import lombok.Value;
-import me.kecker.lichess4j.model.enums.GameMode;
 import me.kecker.lichess4j.model.enums.Title;
 
 @Value
@@ -12,7 +10,7 @@ public class Account {
     private String id;
     private String username;
     private boolean online;
-    private Map<GameMode, PerformanceSummary> perfs;
+    private PerformanceSummaries perfs;
     private LocalDateTime createdAt;
     private boolean disabled;
     private boolean tosViolation;

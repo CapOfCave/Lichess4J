@@ -4,7 +4,6 @@ import lombok.Value;
 
 @Value
 public class Profile {
-
     private String country;
     private String location;
     private String bio;
