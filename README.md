@@ -1,6 +1,7 @@
 
 [![Build Status](https://github.com/CapOfCave/Lichess4J/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/CapOfCave/Lichess4J/actions?query=workflow%3A"Java+CI"+branch%3Amaster)
 [![Codecov Coverage Status](https://codecov.io/gh/CapOfCave/Lichess4J/branch/master/graph/badge.svg)](https://codecov.io/gh/CapOfCave/Lichess4J)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/CapOfCave/Lichess4J.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CapOfCave/Lichess4J/context:java)
 
 # Lichess4J
 A java wrapper for the https://lichess.org/ api
