@@ -2,7 +2,7 @@ package me.kecker.lichess4j.test.providers;
 
 import me.kecker.lichess4j.model.Profile;
 
-public class ProfileTestProvider {
+public final class ProfileTestProvider {
     private static final String COUNTRY = "EC";
     private static final String LOCATION = "string";
     private static final String BIO = "Free bugs!";
@@ -16,5 +16,9 @@ public class ProfileTestProvider {
     public static Profile getProfile() {
         return new Profile(COUNTRY, LOCATION, BIO, FIRST_NAME, LAST_NAME, FIDE_RATING, USCF_RATING,
                 ECF_RATING, LINKS);
+    }
+    
+    private ProfileTestProvider() {
+        // this class should not be instantiated
     }
 }

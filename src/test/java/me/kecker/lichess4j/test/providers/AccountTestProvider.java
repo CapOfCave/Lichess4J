@@ -6,7 +6,7 @@ import java.time.ZoneId;
 import me.kecker.lichess4j.model.Account;
 import me.kecker.lichess4j.model.enums.Title;
 
-public class AccountTestProvider {
+public final class AccountTestProvider {
 
     private static final String ID = "georges";
     private static final String USERNAME = "Georges";
@@ -41,4 +41,7 @@ public class AccountTestProvider {
                 FOLLOWING, BLOCKING, FOLLOWS_YOU);
     }
 
+    private AccountTestProvider() {
+        // this class should not be instantiated
+    }
 }

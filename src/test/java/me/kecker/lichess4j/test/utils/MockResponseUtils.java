@@ -4,7 +4,7 @@ import java.io.IOException;
 import okhttp3.mockwebserver.MockResponse;
 import okio.Buffer;
 
-public class MockResponseUtils {
+public final class MockResponseUtils {
 
     /**
      * Creates a MockResponse with the content of the file that is loaded.
@@ -35,6 +35,10 @@ public class MockResponseUtils {
         Buffer buffer = new Buffer();
         buffer.readFrom(baseClass.getResourceAsStream(fileName));
         return buffer;
+    }
+
+    private MockResponseUtils() {
+        // this class should not be instantiated
     }
 
 }

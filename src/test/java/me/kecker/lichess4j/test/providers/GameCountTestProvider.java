@@ -2,7 +2,7 @@ package me.kecker.lichess4j.test.providers;
 
 import me.kecker.lichess4j.model.GameCount;
 
-public class GameCountTestProvider {
+public final class GameCountTestProvider {
 
     private static final int ALL = 9265;
     private static final int RATED = 7157;
@@ -22,5 +22,8 @@ public class GameCountTestProvider {
         return new GameCount(ALL, RATED, AI, DRAW, DRAW_H, LOSS, LOSS_H, WIN, WIN_H, BOOKMARK,
                 PLAYING, IMPORT_COUNT, ME);
     }
-
+    
+    private GameCountTestProvider() {
+        // this class should not be instantiated
+    }
 }
