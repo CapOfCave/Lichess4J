@@ -1,5 +1,5 @@
 
-[![Build Status](https://github.com/CapOfCave/Lichess4J/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CapOfCave/Lichess4J/actions?workflow=Java+CI)
+[![Build Status](https://github.com/CapOfCave/Lichess4J/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/CapOfCave/Lichess4J/actions?query=workflow%3A"Java+CI"+branch%3Amaster)
 
 # Lichess4J
 A java wrapper for the https://lichess.org/ api
