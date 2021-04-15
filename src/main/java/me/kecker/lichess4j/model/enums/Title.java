@@ -8,7 +8,7 @@ public enum Title {
     FM,
     WFM,
     NM,
-    CN,
+    CM,
     WCM,
     WNM,
     LM,
