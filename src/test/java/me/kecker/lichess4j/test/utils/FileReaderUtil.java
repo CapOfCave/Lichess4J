@@ -22,5 +22,8 @@ public final class FileReaderUtil {
                 .collect(Collectors.joining("\r\n"));
 
     }
-
+    
+    private FileReaderUtil() {
+        // this class should not be instantiated
+    }
 }
