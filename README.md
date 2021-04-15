@@ -10,8 +10,8 @@ A java wrapper for the https://lichess.org/ api
 - [ ] Account
 - - [x] Get my profile
 - - [x] Get my email address
-- - [ ] Get my preferences
-- - [ ] Get my kid mode status
+- - [x] Get my preferences
+- - [x] Get my kid mode status
 - - [ ] Set my kid mode status
 - [ ] Users
 - - [ ] Get real-time users status
