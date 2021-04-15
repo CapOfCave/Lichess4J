@@ -12,5 +12,9 @@ public class GsonFactory {
                 new LocalDateTimeTypeAdapter())
                 .create();
     }
+    
+    private GsonFactory() {
+        // this class should not be instantiated
+    }
 
 }
