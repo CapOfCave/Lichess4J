@@ -31,4 +31,8 @@ public class LocalDateTimeTypeAdapter extends TypeAdapter<LocalDateTime> {
 
     }
 
+    public static Class<LocalDateTime> getTargetClass() {
+        return LocalDateTime.class;
+    }
+
 }
