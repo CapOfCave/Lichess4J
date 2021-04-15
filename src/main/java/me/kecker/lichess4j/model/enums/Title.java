@@ -12,5 +12,5 @@ public enum Title {
     WCM,
     WNM,
     LM,
-    BOT
+    BOT;
 }
