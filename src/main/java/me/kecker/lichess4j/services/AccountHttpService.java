@@ -9,8 +9,10 @@ import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.model.account.Email;
-import me.kecker.lichess4j.model.account.PreferencesWrapper;
+import me.kecker.lichess4j.model.account.KidModeStatusWrapper;
 import me.kecker.lichess4j.model.account.Preferences;
+import me.kecker.lichess4j.model.account.PreferencesWrapper;
+import me.kecker.lichess4j.model.enums.KidModeStatus;
 
 @AllArgsConstructor
 public class AccountHttpService implements AccountService {
@@ -37,5 +39,12 @@ public class AccountHttpService implements AccountService {
         PreferencesWrapper emailResponse = this.httpBaseClient.get("preferences",
                 PreferencesWrapper.class);
         return emailResponse.getPreferences();
+    }
+
+    @Override
+    public KidModeStatus getKidModeStatus() throws IllegalStatusCodeException, IOException,
+            InterruptedException {
+        KidModeStatusWrapper kidModeStatusResponse = this.httpBaseClient.get("kid", KidModeStatusWrapper.class);
+        return KidModeStatus.of(kidModeStatusResponse.getKidModeStatus());
     }
 }

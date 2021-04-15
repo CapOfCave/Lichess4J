@@ -5,6 +5,7 @@ import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.model.account.Preferences;
+import me.kecker.lichess4j.model.enums.KidModeStatus;
 
 public interface AccountService {
 
@@ -14,5 +15,9 @@ public interface AccountService {
     String getEmail() throws IllegalStatusCodeException, IOException, InterruptedException;
 
     Preferences getPreferenes() throws IllegalStatusCodeException, IOException,
+            InterruptedException;
+
+    KidModeStatus getKidModeStatus()
+            throws IllegalStatusCodeException, IOException,
             InterruptedException;
 }
