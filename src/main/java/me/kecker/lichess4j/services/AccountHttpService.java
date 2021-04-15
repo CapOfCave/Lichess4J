@@ -9,6 +9,8 @@ import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.model.account.Email;
+import me.kecker.lichess4j.model.account.PreferencesWrapper;
+import me.kecker.lichess4j.model.account.Preferences;
 
 @AllArgsConstructor
 public class AccountHttpService implements AccountService {
@@ -27,5 +29,13 @@ public class AccountHttpService implements AccountService {
     public String getEmail() throws IllegalStatusCodeException, IOException, InterruptedException {
         Email emailResponse = this.httpBaseClient.get("email", Email.class);
         return emailResponse.getEmail();
+    }
+
+    @Override
+    public Preferences getPreferenes() throws IllegalStatusCodeException, IOException,
+            InterruptedException {
+        PreferencesWrapper emailResponse = this.httpBaseClient.get("preferences",
+                PreferencesWrapper.class);
+        return emailResponse.getPreferences();
     }
 }

@@ -2,6 +2,7 @@ package me.kecker.lichess4j.test.providers;
 
 import java.net.URI;
 import me.kecker.lichess4j.model.account.Preferences;
+import me.kecker.lichess4j.model.account.PreferencesWrapper;
 import me.kecker.lichess4j.model.enums.PieceSet;
 import me.kecker.lichess4j.model.enums.PieceSet3d;
 import me.kecker.lichess4j.model.enums.SoundSet;
@@ -45,6 +46,10 @@ public class PreferencesTestProvider {
     private static final int ZEN = 0;
     private static final int MOVE_EVENT = 2;
     private static final int ROOK_CASTLE = 1;
+
+    public static PreferencesWrapper getPreferencesWrapper() {
+        return new PreferencesWrapper(getPreferences());
+    }
 
     public static Preferences getPreferences() {
         return new Preferences(DARK, TRANSP, BG_IMAGE, IS_3D, THEME, PIECE_SET, THEME_3D,
