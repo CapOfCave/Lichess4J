@@ -9,4 +9,6 @@ public interface AccountService {
 
     Account getAccountInfo() throws IOException, InterruptedException, UnauthorizedException,
             IllegalStatusCodeException;
+
+    String getEmail() throws IllegalStatusCodeException, IOException, InterruptedException;
 }
