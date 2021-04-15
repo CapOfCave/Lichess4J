@@ -11,9 +11,7 @@ import me.kecker.lichess4j.services.AccountHttpService;
  */
 public class Lichess4J {
     private @NonNull String bearerToken;
-
     private HttpBaseClient httpBaseClient;
-
     private AccountService accountService;
 
     public Lichess4J(@NonNull String bearerToken) {
@@ -26,7 +24,7 @@ public class Lichess4J {
                 .getGson());
         this.accountService = new AccountHttpService(this.httpBaseClient);
     }
-    
+
     public AccountService account() {
         return this.accountService;
     }

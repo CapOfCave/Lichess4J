@@ -33,7 +33,7 @@ public class HttpBaseClient {
 
         validateStatusCode(response.statusCode());
 
-        return gson.fromJson(response.body(), entityClass);
+        return this.gson.fromJson(response.body(), entityClass);
 
     }
 
