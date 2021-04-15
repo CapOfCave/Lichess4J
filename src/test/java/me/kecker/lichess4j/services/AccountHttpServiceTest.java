@@ -9,10 +9,13 @@ import me.kecker.lichess4j.http.base.HttpBaseClient;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.model.account.Email;
+import me.kecker.lichess4j.model.account.KidModeStatusWrapper;
 import me.kecker.lichess4j.model.account.Preferences;
 import me.kecker.lichess4j.model.account.PreferencesWrapper;
+import me.kecker.lichess4j.model.enums.KidModeStatus;
 import me.kecker.lichess4j.test.providers.AccountTestProvider;
 import me.kecker.lichess4j.test.providers.EmailTestProvider;
+import me.kecker.lichess4j.test.providers.KidModeStatusTestProvider;
 import me.kecker.lichess4j.test.providers.PreferencesTestProvider;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +29,7 @@ public class AccountHttpServiceTest {
     private static final String ACCOUNT_URL = "account";
     private static final String EMAIL_URL = "email";
     private static final String PREFERENCES_URL = "preferences";
+    private static final String KID_MODE_STATUS_URL = "kid";
 
     private AccountHttpService objectUnderTest;
 
@@ -77,6 +81,20 @@ public class AccountHttpServiceTest {
 
         assertNotNull(result);
         assertThat(result).isEqualTo(PreferencesTestProvider.getPreferences());
+
+    }
+
+    @Test
+    public void getKidModeStatus_happyDay_returnKidModeStatus() throws IOException,
+            InterruptedException, IllegalStatusCodeException {
+
+        when(httpBaseClientMock.get(KID_MODE_STATUS_URL, KidModeStatusWrapper.class)).thenReturn(
+                KidModeStatusTestProvider.getKidModeStatusWrapper());
+
+        KidModeStatus result = this.objectUnderTest.getKidModeStatus();
+
+        assertNotNull(result);
+        assertThat(result).isEqualTo(KidModeStatusTestProvider.getKidModeStatus());
 
     }
 }
