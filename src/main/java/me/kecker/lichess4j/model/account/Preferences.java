@@ -42,6 +42,9 @@ public class Preferences {
     private int message;
     private int coordColor;
     private int submitMove;
+    private int confirmResign;
+    private int insightShare;
+    private int keyboardMove;
     private int zen;
     private int moveEvent;
     private int rookCastle;
