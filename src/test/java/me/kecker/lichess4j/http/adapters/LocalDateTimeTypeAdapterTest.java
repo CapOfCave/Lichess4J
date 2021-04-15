@@ -1,6 +1,7 @@
 package me.kecker.lichess4j.http.adapters;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -68,17 +69,21 @@ public class LocalDateTimeTypeAdapterTest {
     }
 
     @Test
+    public void read_readerNull_returnsNull() throws IOException {
+        LocalDateTime localDateTime = this.objectUnderTest.read(null);
+        assertEquals(null, localDateTime);
+    }
+
+    @Test
     public void write_happyDay_writesLocalDateTime() throws IOException {
         try (MockedStatic<ZoneId> mockedZoneId = Mockito.mockStatic(ZoneId.class)) {
             mockedZoneId.when(ZoneId::systemDefault)
                     .thenReturn(DEFAULT_ZONE_ID);
-
             when(this.jsonWriterMock.value(DATE_EPOCH_MILLIS)).thenReturn(this.jsonWriterMock);
 
             this.objectUnderTest.write(this.jsonWriterMock, DATE_LOCAL_DATE_TIME_UTC);
 
             verify(this.jsonWriterMock, times(1)).value(DATE_EPOCH_MILLIS);
-
         }
     }
 
@@ -96,6 +101,14 @@ public class LocalDateTimeTypeAdapterTest {
             verify(this.jsonWriterMock, times(1)).value(DATE_EPOCH_MILLIS);
 
         }
+    }
+
+    @Test
+    public void write_valueNull_writesNull() throws IOException {
+        this.objectUnderTest.write(this.jsonWriterMock, null);
+
+        verify(this.jsonWriterMock, times(1)).nullValue();
+        verify(this.jsonWriterMock, never()).value(Mockito.anyLong());
     }
 
     private LocalDateTime getOffsetLocalDateTime(int offset) {
