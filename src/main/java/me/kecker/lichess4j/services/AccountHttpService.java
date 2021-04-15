@@ -7,8 +7,8 @@ import me.kecker.lichess4j.api.AccountService;
 import me.kecker.lichess4j.http.base.HttpBaseClient;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
-import me.kecker.lichess4j.model.Account;
-import me.kecker.lichess4j.model.Email;
+import me.kecker.lichess4j.model.account.Account;
+import me.kecker.lichess4j.model.account.Email;
 
 @AllArgsConstructor
 public class AccountHttpService implements AccountService {

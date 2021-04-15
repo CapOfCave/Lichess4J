@@ -1,6 +1,6 @@
 package me.kecker.lichess4j.test.providers;
 
-import me.kecker.lichess4j.model.Profile;
+import me.kecker.lichess4j.model.account.Profile;
 
 public final class ProfileTestProvider {
     private static final String COUNTRY = "EC";

@@ -1,6 +1,6 @@
 package me.kecker.lichess4j.test.providers;
 
-import me.kecker.lichess4j.model.PerformanceSummaries;
+import me.kecker.lichess4j.model.account.PerformanceSummaries;
 
 public final class PerformanceSummariesTestProvider {
 

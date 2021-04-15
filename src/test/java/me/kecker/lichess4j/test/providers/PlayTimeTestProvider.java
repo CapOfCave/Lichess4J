@@ -1,6 +1,6 @@
 package me.kecker.lichess4j.test.providers;
 
-import me.kecker.lichess4j.model.PlayTime;
+import me.kecker.lichess4j.model.account.PlayTime;
 
 public final class PlayTimeTestProvider {
 

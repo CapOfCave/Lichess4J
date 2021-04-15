@@ -1,7 +1,7 @@
 package me.kecker.lichess4j.test.providers;
 
-import me.kecker.lichess4j.model.PerformanceSummary;
-import me.kecker.lichess4j.model.StormPerformanceSummary;
+import me.kecker.lichess4j.model.account.PerformanceSummary;
+import me.kecker.lichess4j.model.account.StormPerformanceSummary;
 
 public final class PerformanceSummaryTestProvider {
 

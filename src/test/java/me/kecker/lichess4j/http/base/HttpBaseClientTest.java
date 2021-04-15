@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.http.HttpClient;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
-import me.kecker.lichess4j.model.Account;
+import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.test.providers.AccountTestProvider;
 import org.junit.Before;
 import org.junit.Test;

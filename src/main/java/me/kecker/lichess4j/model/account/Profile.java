@@ -1,4 +1,4 @@
-package me.kecker.lichess4j.model;
+package me.kecker.lichess4j.model.account;
 
 import lombok.Value;
 

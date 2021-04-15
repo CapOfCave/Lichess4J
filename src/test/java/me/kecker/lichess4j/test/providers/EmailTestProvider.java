@@ -1,6 +1,6 @@
 package me.kecker.lichess4j.test.providers;
 
-import me.kecker.lichess4j.model.Email;
+import me.kecker.lichess4j.model.account.Email;
 
 public class EmailTestProvider {
 

@@ -3,7 +3,7 @@ package me.kecker.lichess4j.test.providers;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import me.kecker.lichess4j.model.Account;
+import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.model.enums.Title;
 
 public final class AccountTestProvider {
