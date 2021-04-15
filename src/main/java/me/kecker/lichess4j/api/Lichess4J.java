@@ -11,8 +11,8 @@ import me.kecker.lichess4j.services.AccountHttpService;
  */
 public class Lichess4J {
     private @NonNull String bearerToken;
-    private HttpBaseClient httpBaseClient;
-    private AccountService accountService;
+    private @NonNull HttpBaseClient httpBaseClient;
+    private @NonNull AccountService accountService;
 
     public Lichess4J(@NonNull String bearerToken) {
         this.bearerToken = bearerToken;
