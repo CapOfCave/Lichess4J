@@ -6,7 +6,7 @@ import lombok.NonNull;
 import me.kecker.lichess4j.api.UsersService;
 import me.kecker.lichess4j.http.base.HttpBaseClient;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
-import me.kecker.lichess4j.model.account.Email;
+import me.kecker.lichess4j.model.users.UserStatus;
 
 @AllArgsConstructor
 public class UsersHttpService implements UsersService {
@@ -16,10 +16,10 @@ public class UsersHttpService implements UsersService {
     private HttpBaseClient httpBaseClient;
 
     @Override
-    public String getRealTimeUserStatus() throws IllegalStatusCodeException, IOException,
+    public UserStatus getRealTimeUserStatus() throws IllegalStatusCodeException, IOException,
             InterruptedException {
-        Email emailResponse = this.httpBaseClient.get(ENDPOINT, "status", Email.class);
-        return emailResponse.getEmail();
+        UserStatus statusResponse = this.httpBaseClient.get(ENDPOINT, "status", UserStatus.class);
+        return statusResponse;
     }
 
 }
