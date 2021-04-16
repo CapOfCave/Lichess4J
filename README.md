@@ -8,123 +8,123 @@ A java wrapper for the https://lichess.org/ api
 
 ## Lichess endpoint coverage
 - [ ] Account
-- - [x] Get my profile
-- - [x] Get my email address
-- - [x] Get my preferences
-- - [x] Get my kid mode status
-- - [ ] Set my kid mode status
+  - [x] Get my profile
+  - [x] Get my email address
+  - [x] Get my preferences
+  - [x] Get my kid mode status
+  - [ ] Set my kid mode status
 - [ ] Users
-- - [ ] Get real-time users status
-- - [ ] Get all top 100
-- - [ ] Get one leaderboard
-- - [ ] Get user public data
-- - [ ] Get rating history of a user
-- - [ ] Get user activity
-- - [ ] Get users by ID
-- - [ ] Get members of a team
-- - [ ] Get live streamers
-- - [ ] Get crosstable
+  - [ ] Get real-time users status
+  - [ ] Get all top 100
+  - [ ] Get one leaderboard
+  - [ ] Get user public data
+  - [ ] Get rating history of a user
+  - [ ] Get user activity
+  - [ ] Get users by ID
+  - [ ] Get members of a team
+  - [ ] Get live streamers
+  - [ ] Get crosstable
 - [ ] Relations
-- - [ ] Get users followed by a user
-- - [ ] Get users who follow a user
+  - [ ] Get users followed by a user
+  - [ ] Get users who follow a user
 - [ ] Games
-- - [ ] Export one game
-- - [ ] Export ongoing game of a user
-- - [ ] Export games of a user
-- - [ ] Export games by IDs
-- - [ ] Stream current games
-- - [ ] Get ongoing games
-- - [ ] Get current TV games
-- - [ ] Stream current TV game
-- - [ ] Import one game
+  - [ ] Export one game
+  - [ ] Export ongoing game of a user
+  - [ ] Export games of a user
+  - [ ] Export games by IDs
+  - [ ] Stream current games
+  - [ ] Get ongoing games
+  - [ ] Get current TV games
+  - [ ] Stream current TV game
+  - [ ] Import one game
 - [ ] Puzzles
-- - [ ] Get the daily puzzle
-- - [ ] Get your puzzle activity
-- - [ ] Get your puzzle dashboard
-- - [ ] Get the storm dashboard of a player
+  - [ ] Get the daily puzzle
+  - [ ] Get your puzzle activity
+  - [ ] Get your puzzle dashboard
+  - [ ] Get the storm dashboard of a player
 - [ ] Teams
-- - [ ] Get team swiss tournaments
-- - [ ] Get a single team
-- - [ ] Get populat teams
-- - [ ] Teams of a player
-- - [ ] Search teams
-- - [ ] Get members of a team
-- - [ ] Get team Arena tournaments
-- - [ ] Join a team
-- - [ ] Leave a team
-- - [ ] Kick a user from your team
-- - [ ] Message all members
+  - [ ] Get team swiss tournaments
+  - [ ] Get a single team
+  - [ ] Get populat teams
+  - [ ] Teams of a player
+  - [ ] Search teams
+  - [ ] Get members of a team
+  - [ ] Get team Arena tournaments
+  - [ ] Join a team
+  - [ ] Leave a team
+  - [ ] Kick a user from your team
+  - [ ] Message all members
 - [ ] Board
-- - [ ] Stream incoming events
-- - [ ] Create a seek
-- - [ ] Stream Board game state
-- - [ ] Make a Board move
-- - [ ] Write in the chat
-- - [ ] Abort a game
-- - [ ] Resign a game
-- - [ ] Handle draw offers
+  - [ ] Stream incoming events
+  - [ ] Create a seek
+  - [ ] Stream Board game state
+  - [ ] Make a Board move
+  - [ ] Write in the chat
+  - [ ] Abort a game
+  - [ ] Resign a game
+  - [ ] Handle draw offers
 - [ ] Bot
-- - [ ] Stream incoming events
-- - [ ] Upgrade to Bot acccount
-- - [ ] Stream Bot game state
-- - [ ] Make a Bot move
-- - [ ] Write in the chat
-- - [ ] Abort a game
-- - [ ] Resign a game
+  - [ ] Stream incoming events
+  - [ ] Upgrade to Bot acccount
+  - [ ] Stream Bot game state
+  - [ ] Make a Bot move
+  - [ ] Write in the chat
+  - [ ] Abort a game
+  - [ ] Resign a game
 - [ ] Challenges
-- - [ ] Create a challenge
-- - [ ] Accept a challenge
-- - [ ] Decline a challenge
-- - [ ] Cancel a challenge
-- - [ ] Challenge the AI
-- - [ ] Open-ended challenge
-- - [ ] Start clocks of a game
-- - [ ] Add time to the opponent clock
-- - [ ] Create an adming challenge
+  - [ ] Create a challenge
+  - [ ] Accept a challenge
+  - [ ] Decline a challenge
+  - [ ] Cancel a challenge
+  - [ ] Challenge the AI
+  - [ ] Open-ended challenge
+  - [ ] Start clocks of a game
+  - [ ] Add time to the opponent clock
+  - [ ] Create an adming challenge
 - [ ] Bulk pairings
-- - [ ] View upcoming bulk pairings
-- - [ ] Create a bulk pairing
-- - [ ] Manually start clocks
-- - [ ] Cancel a bulk pairing
+  - [ ] View upcoming bulk pairings
+  - [ ] Create a bulk pairing
+  - [ ] Manually start clocks
+  - [ ] Cancel a bulk pairing
 - [ ] Arena tournaments
-- - [ ] Get current tournaments
-- - [ ] Create a new Arena tournament
-- - [ ] Get info about an Arena tournament
-- - [ ] Update an Arena tournament
-- - [ ] Update a team battle
-- - [ ] Export games of an Arena tournament
-- - [ ] Get results of an Arena tournament
-- - [ ] Get team standing of a team battle
-- - [ ] Get tournaments created by a user
-- - [ ] Get team Arena tournaments
+  - [ ] Get current tournaments
+  - [ ] Create a new Arena tournament
+  - [ ] Get info about an Arena tournament
+  - [ ] Update an Arena tournament
+  - [ ] Update a team battle
+  - [ ] Export games of an Arena tournament
+  - [ ] Get results of an Arena tournament
+  - [ ] Get team standing of a team battle
+  - [ ] Get tournaments created by a user
+  - [ ] Get team Arena tournaments
 - [ ] Swiss tournaments
-- - [ ] Create a new Swiss tornament
-- - [ ] Export TRF of a Swiss tournament
-- - [ ] Export games of a Swiss tournament
-- - [ ] Get results of a swiss tournament
-- - [ ] Get team swiss tournaments
+  - [ ] Create a new Swiss tornament
+  - [ ] Export TRF of a Swiss tournament
+  - [ ] Export games of a Swiss tournament
+  - [ ] Get results of a swiss tournament
+  - [ ] Get team swiss tournaments
 - [ ] Simuls
-- - [ ] Get current simuls
+  - [ ] Get current simuls
 - [ ] Studies
-- - [ ] Export one study chapter
-- - [ ] Export all chapters
-- - [ ] Export all studies of a user
+  - [ ] Export one study chapter
+  - [ ] Export all chapters
+  - [ ] Export all studies of a user
 - [ ] Messaging
-- - [ ] Send a private message
+  - [ ] Send a private message
 - [ ] Broadcasts
-- - [ ] Get official broadcasts
-- - [ ] Create a broadcast
-- - [ ] Get your broadcast
-- - [ ] Update your broadcast
-- - [ ] Push PGN to your broadcast
+  - [ ] Get official broadcasts
+  - [ ] Create a broadcast
+  - [ ] Get your broadcast
+  - [ ] Update your broadcast
+  - [ ] Push PGN to your broadcast
 - [ ] Analysis
-- - [ ] Get cloud evaluation of a position
+  - [ ] Get cloud evaluation of a position
 - [ ] Opening Explorer
-- - [ ] Master games
-- - [ ] Lichess games
-- - [ ] OTB master games
-- - [ ] Opening explorer stats
+  - [ ] Master games
+  - [ ] Lichess games
+  - [ ] OTB master games
+  - [ ] Opening explorer stats
 - [ ] Tablebase
-- - [ ] Tablebase lookup
-- - [ ] Tablebase lookup for Atomic chess
-- - [ ] Tablebase lookup for Antichess
+  - [ ] Tablebase lookup
+  - [ ] Tablebase lookup for Atomic chess
+  - [ ] Tablebase lookup for Antichess
