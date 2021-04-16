@@ -6,7 +6,7 @@ import me.kecker.lichess4j.model.enums.KidModeStatus;
 public class KidModeStatusTestProvider {
 
     private static final boolean VALUE = false;
-    
+
     public static KidModeStatusWrapper getKidModeStatusWrapper() {
         return new KidModeStatusWrapper(VALUE);
     }
@@ -15,4 +15,7 @@ public class KidModeStatusTestProvider {
         return KidModeStatus.of(VALUE);
     }
 
+    private KidModeStatusTestProvider() {
+        // this class should not be instantiated
+    }
 }
