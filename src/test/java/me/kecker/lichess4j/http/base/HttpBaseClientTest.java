@@ -25,7 +25,10 @@ public class HttpBaseClientTest {
 
     private static final String BASE_URL = "https://lichess.org/api/";
     private static final String BEARER_TOKEN = "123abc456def";
-    private static final String URL = "url";
+    private static final String ENDPOINT = "endpoint";
+    private static final String PATH = "path";
+    private static final String FULL_URL = BASE_URL + ENDPOINT + "/" + PATH;
+
     private static final String RESPONSE_BODY = "{\"success\": true}";
     private static final Class<Account> RESPONSE_CLASS = Account.class;
     private static final Map<String, String> PARAMETERS = Map.of("a", "1", "b", "2");
@@ -49,18 +52,18 @@ public class HttpBaseClientTest {
     public void get_happyDay_callsLichessApi() throws IllegalStatusCodeException, IOException,
             InterruptedException {
 
-        mockHttpRequestFactory(Collections.emptyMap());
-        this.httpClientMock.onGet(BASE_URL + URL)
+        mockHttpRequestFactory(PATH, Collections.emptyMap(), FULL_URL);
+        this.httpClientMock.onGet(FULL_URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturn(RESPONSE_BODY);
         when(this.gsonMock.fromJson(RESPONSE_BODY, RESPONSE_CLASS)).thenReturn(AccountTestProvider
                 .getAccount());
 
-        Account result = this.objectUnderTest.get(URL, RESPONSE_CLASS);
+        Account result = this.objectUnderTest.get(ENDPOINT, PATH, RESPONSE_CLASS);
 
         assertEquals(AccountTestProvider.getAccount(), result);
         this.httpClientMock.verify()
-                .get(BASE_URL + URL)
+                .get(FULL_URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
 
     }
@@ -69,55 +72,75 @@ public class HttpBaseClientTest {
     public void get_unauthorized_throwsUnautorizedException() throws IllegalStatusCodeException,
             IOException, InterruptedException {
 
-        mockHttpRequestFactory(Collections.emptyMap());
-        this.httpClientMock.onGet(BASE_URL + URL)
+        mockHttpRequestFactory(PATH, Collections.emptyMap(), FULL_URL);
+        this.httpClientMock.onGet(FULL_URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturnStatus(401);
 
-        this.objectUnderTest.get(URL, RESPONSE_CLASS);
+        this.objectUnderTest.get(ENDPOINT, PATH, RESPONSE_CLASS);
 
     }
 
     @Test(expected = IllegalStatusCodeException.class)
     public void get_unidentifiedStatusCode_throwsIllegalStatusCodeException()
             throws IllegalStatusCodeException, IOException, InterruptedException {
-        mockHttpRequestFactory(Collections.emptyMap());
-        this.httpClientMock.onGet(BASE_URL + URL)
+        mockHttpRequestFactory(PATH, Collections.emptyMap(), FULL_URL);
+        this.httpClientMock.onGet(FULL_URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturnStatus(501);
 
-        this.objectUnderTest.get(URL, RESPONSE_CLASS);
+        this.objectUnderTest.get(ENDPOINT, PATH, RESPONSE_CLASS);
 
     }
 
     public void get_withParameters_callsLichessAPI() throws IllegalStatusCodeException, IOException,
             InterruptedException {
-        mockHttpRequestFactory(PARAMETERS);
-        this.httpClientMock.onGet(BASE_URL + URL)
+        mockHttpRequestFactory(PATH, PARAMETERS, FULL_URL);
+        this.httpClientMock.onGet(FULL_URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturn(RESPONSE_BODY);
         when(this.gsonMock.fromJson(RESPONSE_BODY, RESPONSE_CLASS)).thenReturn(AccountTestProvider
                 .getAccount());
 
-        Account result = this.objectUnderTest.get(URL, PARAMETERS, RESPONSE_CLASS);
+        Account result = this.objectUnderTest.get(ENDPOINT, PATH, PARAMETERS, RESPONSE_CLASS);
 
         assertEquals(AccountTestProvider.getAccount(), result);
         this.httpClientMock.verify()
-                .get(BASE_URL + URL)
+                .get(FULL_URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
 
     }
 
-    private void mockHttpRequestFactory(Map<String, String> parameters) {
-        when(this.httpRequestFactoryMock.createGetRequest(URL, parameters)).thenReturn(
-                createHttpRequest());
+    @Test
+    public void get_withEmptySubPath_callsLichessApi() throws IllegalStatusCodeException,
+            IOException, InterruptedException {
+
+        mockHttpRequestFactory(null, Collections.emptyMap(), BASE_URL + ENDPOINT);
+        this.httpClientMock.onGet(BASE_URL + ENDPOINT)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturn(RESPONSE_BODY);
+        when(this.gsonMock.fromJson(RESPONSE_BODY, RESPONSE_CLASS)).thenReturn(AccountTestProvider
+                .getAccount());
+
+        Account result = this.objectUnderTest.get(ENDPOINT, null, RESPONSE_CLASS);
+
+        assertEquals(AccountTestProvider.getAccount(), result);
+        this.httpClientMock.verify()
+                .get(BASE_URL + ENDPOINT)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
+
     }
 
-    private HttpRequest createHttpRequest() {
+    private void mockHttpRequestFactory(String path, Map<String, String> parameters, String returnedUrl) {
+        when(this.httpRequestFactoryMock.createGetRequest(ENDPOINT, path, parameters)).thenReturn(
+                createHttpRequest(returnedUrl));
+    }
+
+    private HttpRequest createHttpRequest(String fullUrl) {
         return HttpRequest.newBuilder()
                 .GET()
                 .header("Authorization", "Bearer " + BEARER_TOKEN)
-                .uri(URI.create(BASE_URL + URL))
+                .uri(URI.create(fullUrl))
                 .build();
     }
 }

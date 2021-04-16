@@ -15,15 +15,24 @@ public class HttpRequestFactory {
 
     private String bearerToken;
 
-    public HttpRequest createGetRequest(String path, Map<String, String> parameters) {
+    public HttpRequest createGetRequest(String endpoint, String path,
+            Map<String, String> parameters) {
         return HttpRequest.newBuilder()
                 .header("Authorization", "Bearer " + this.bearerToken)
-                .uri(createURI(path, parameters))
+                .uri(createURI(endpoint, path, parameters))
                 .build();
     }
 
-    URI createURI(String path, Map<String, String> parameters) {
-        return URI.create(BASE_URL + withStartingSlash(path) + "?" + createQuery(parameters));
+    URI createURI(String endpoint, String path, Map<String, String> parameters) {
+        return URI.create(BASE_URL + withStartingSlash(endpoint) + createPath(path) + "?"
+                + createQuery(parameters));
+    }
+
+    private String createPath(String path) {
+        if (path == null) {
+            return "";
+        }
+        return withStartingSlash(path);
     }
 
     private String withStartingSlash(String relativePath) {

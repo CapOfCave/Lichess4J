@@ -23,15 +23,16 @@ public class HttpBaseClient {
     @NonNull
     private HttpRequestFactory requestFactory;
 
-    public <T> T get(String url, Class<T> responseClass) throws IOException, InterruptedException,
-            IllegalStatusCodeException {
-        return get(url, Collections.emptyMap(), responseClass);
+    public <T> T get(String endpoint, String path, Class<T> responseClass) throws IOException,
+            InterruptedException, IllegalStatusCodeException {
+        return get(endpoint, path, Collections.emptyMap(), responseClass);
     }
 
-    public <T> T get(String path, Map<String, String> parameters, Class<T> responseClass)
-            throws IOException, InterruptedException, IllegalStatusCodeException {
+    public <T> T get(String endpoint, String path, Map<String, String> parameters,
+            Class<T> responseClass) throws IOException, InterruptedException,
+            IllegalStatusCodeException {
 
-        HttpRequest request = requestFactory.createGetRequest(path, parameters);
+        HttpRequest request = requestFactory.createGetRequest(endpoint, path, parameters);
         HttpResponse<String> response = this.httpClient.send(request, BodyHandlers.ofString());
         validateStatusCode(response.statusCode());
         return this.gson.fromJson(response.body(), responseClass);

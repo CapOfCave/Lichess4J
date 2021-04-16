@@ -26,7 +26,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class AccountHttpServiceTest {
 
-    private static final String ACCOUNT_URL = "account";
+    private static final String ACCOUNT_BASE_URL = "account";
     private static final String EMAIL_URL = "email";
     private static final String PREFERENCES_URL = "preferences";
     private static final String KID_MODE_STATUS_URL = "kid";
@@ -45,7 +45,7 @@ public class AccountHttpServiceTest {
     public void getAccountInfo_happyDay_returnsAccountInfo() throws IOException,
             InterruptedException, IllegalStatusCodeException {
 
-        when(httpBaseClientMock.get(ACCOUNT_URL, Account.class)).thenReturn(AccountTestProvider
+        when(httpBaseClientMock.get(ACCOUNT_BASE_URL, null, Account.class)).thenReturn(AccountTestProvider
                 .getAccount());
 
         Account result = this.objectUnderTest.getAccountInfo();
@@ -60,7 +60,7 @@ public class AccountHttpServiceTest {
     public void getEmail_happyDay_returnsEmail() throws IOException, InterruptedException,
             IllegalStatusCodeException {
 
-        when(httpBaseClientMock.get(EMAIL_URL, Email.class)).thenReturn(EmailTestProvider
+        when(httpBaseClientMock.get(ACCOUNT_BASE_URL, EMAIL_URL, Email.class)).thenReturn(EmailTestProvider
                 .getEmail());
 
         String result = this.objectUnderTest.getEmail();
@@ -74,7 +74,7 @@ public class AccountHttpServiceTest {
     public void getPreferences_happyDay_returnsPreferences() throws IOException,
             InterruptedException, IllegalStatusCodeException {
 
-        when(httpBaseClientMock.get(PREFERENCES_URL, PreferencesWrapper.class)).thenReturn(
+        when(httpBaseClientMock.get(ACCOUNT_BASE_URL, PREFERENCES_URL, PreferencesWrapper.class)).thenReturn(
                 PreferencesTestProvider.getPreferencesWrapper());
 
         Preferences result = this.objectUnderTest.getPreferenes();
@@ -88,7 +88,7 @@ public class AccountHttpServiceTest {
     public void getKidModeStatus_happyDay_returnKidModeStatus() throws IOException,
             InterruptedException, IllegalStatusCodeException {
 
-        when(httpBaseClientMock.get(KID_MODE_STATUS_URL, KidModeStatusWrapper.class)).thenReturn(
+        when(httpBaseClientMock.get(ACCOUNT_BASE_URL, KID_MODE_STATUS_URL, KidModeStatusWrapper.class)).thenReturn(
                 KidModeStatusTestProvider.getKidModeStatusWrapper());
 
         KidModeStatus result = this.objectUnderTest.getKidModeStatus();
