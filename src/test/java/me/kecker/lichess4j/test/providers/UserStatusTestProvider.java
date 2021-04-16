@@ -16,11 +16,15 @@ public class UserStatusTestProvider {
     private static final Boolean STREAMING1 = Boolean.TRUE;
     private static final Boolean PATRON1 = Boolean.TRUE;
 
-    public UserStatus getUserStatus() {
+    public static UserStatus getUserStatus() {
         return new UserStatus(ID2, NAME2);
     }
 
-    public UserStatus getFullUserStatus() {
+    public static UserStatus getFullUserStatus() {
         return new UserStatus(ID1, NAME1, TITLE1, ONLINE1, PLAYING1, STREAMING1, PATRON1);
+    }
+
+    private UserStatusTestProvider() {
+        // this class should not be instantiated
     }
 }
