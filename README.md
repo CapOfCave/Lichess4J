@@ -14,7 +14,7 @@ A java wrapper for the https://lichess.org/ api
   - [x] Get my kid mode status
   - [ ] Set my kid mode status
 - [ ] Users
-  - [ ] Get real-time users status
+  - [x] Get real-time users status
   - [ ] Get all top 100
   - [ ] Get one leaderboard
   - [ ] Get user public data
