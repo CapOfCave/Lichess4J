@@ -93,6 +93,7 @@ public class HttpBaseClientTest {
 
     }
 
+    @Test
     public void get_withParameters_callsLichessAPI() throws IllegalStatusCodeException, IOException,
             InterruptedException {
         mockHttpRequestFactory(PATH, PARAMETERS, FULL_URL);
