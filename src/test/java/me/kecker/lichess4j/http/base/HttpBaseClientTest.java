@@ -7,9 +7,9 @@ import com.google.gson.Gson;
 import com.pgssoft.httpclient.HttpClientMock;
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.util.Collections;
+import java.util.Map;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 import me.kecker.lichess4j.model.account.Account;
@@ -18,8 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -30,6 +28,7 @@ public class HttpBaseClientTest {
     private static final String URL = "url";
     private static final String RESPONSE_BODY = "{\"success\": true}";
     private static final Class<Account> RESPONSE_CLASS = Account.class;
+    private static final Map<String, String> PARAMETERS = Map.of("a", "1", "b", "2");
 
     private HttpBaseClient objectUnderTest;
 
@@ -50,7 +49,7 @@ public class HttpBaseClientTest {
     public void get_happyDay_callsLichessApi() throws IllegalStatusCodeException, IOException,
             InterruptedException {
 
-        mockHttpRequestFactory();
+        mockHttpRequestFactory(Collections.emptyMap());
         this.httpClientMock.onGet(BASE_URL + URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturn(RESPONSE_BODY);
@@ -70,7 +69,7 @@ public class HttpBaseClientTest {
     public void get_unauthorized_throwsUnautorizedException() throws IllegalStatusCodeException,
             IOException, InterruptedException {
 
-        mockHttpRequestFactory();
+        mockHttpRequestFactory(Collections.emptyMap());
         this.httpClientMock.onGet(BASE_URL + URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturnStatus(401);
@@ -82,7 +81,7 @@ public class HttpBaseClientTest {
     @Test(expected = IllegalStatusCodeException.class)
     public void get_unidentifiedStatusCode_throwsIllegalStatusCodeException()
             throws IllegalStatusCodeException, IOException, InterruptedException {
-        mockHttpRequestFactory();
+        mockHttpRequestFactory(Collections.emptyMap());
         this.httpClientMock.onGet(BASE_URL + URL)
                 .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
                 .doReturnStatus(501);
@@ -91,8 +90,26 @@ public class HttpBaseClientTest {
 
     }
 
-    private void mockHttpRequestFactory() {
-        when(this.httpRequestFactoryMock.createGetRequest(URL, Collections.emptyMap())).thenReturn(
+    public void get_withParameters_callsLichessAPI() throws IllegalStatusCodeException, IOException,
+            InterruptedException {
+        mockHttpRequestFactory(PARAMETERS);
+        this.httpClientMock.onGet(BASE_URL + URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturn(RESPONSE_BODY);
+        when(this.gsonMock.fromJson(RESPONSE_BODY, RESPONSE_CLASS)).thenReturn(AccountTestProvider
+                .getAccount());
+
+        Account result = this.objectUnderTest.get(URL, PARAMETERS, RESPONSE_CLASS);
+
+        assertEquals(AccountTestProvider.getAccount(), result);
+        this.httpClientMock.verify()
+                .get(BASE_URL + URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
+
+    }
+
+    private void mockHttpRequestFactory(Map<String, String> parameters) {
+        when(this.httpRequestFactoryMock.createGetRequest(URL, parameters)).thenReturn(
                 createHttpRequest());
     }
 
