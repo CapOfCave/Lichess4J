@@ -2,7 +2,6 @@ package me.kecker.lichess4j.http.base;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -18,30 +17,23 @@ import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 public class HttpBaseClient {
 
     @NonNull
-    private String baseUrl;
-    @NonNull
-    private String bearerToken;
-    @NonNull
     private Gson gson;
     @NonNull
     private HttpClient httpClient;
+    @NonNull
+    private HttpRequestFactory requestFactory;
 
     public <T> T get(String url, Class<T> responseClass) throws IOException, InterruptedException,
             IllegalStatusCodeException {
         return get(url, Collections.emptyMap(), responseClass);
     }
 
-    public <T> T get(String url, Map<String, String> parameters, Class<T> responseClass)
+    public <T> T get(String path, Map<String, String> parameters, Class<T> responseClass)
             throws IOException, InterruptedException, IllegalStatusCodeException {
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .header("Authorization", "Bearer " + this.bearerToken)
-                .uri(URI.create(this.baseUrl + url))
-                .build();
+        HttpRequest request = requestFactory.createGetRequest(path, parameters);
         HttpResponse<String> response = this.httpClient.send(request, BodyHandlers.ofString());
-
         validateStatusCode(response.statusCode());
-
         return this.gson.fromJson(response.body(), responseClass);
 
     }

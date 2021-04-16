@@ -6,7 +6,10 @@ import static org.mockito.Mockito.when;
 import com.google.gson.Gson;
 import com.pgssoft.httpclient.HttpClientMock;
 import java.io.IOException;
+import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.util.Collections;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 import me.kecker.lichess4j.model.account.Account;
@@ -32,70 +35,72 @@ public class HttpBaseClientTest {
 
     @Mock
     private Gson gsonMock;
+    @Mock
+    private HttpRequestFactory httpRequestFactoryMock;
     private HttpClientMock httpClientMock;
 
     @Before
     public void setup() {
         this.httpClientMock = new HttpClientMock();
-        this.objectUnderTest = new HttpBaseClient(BASE_URL, BEARER_TOKEN, this.gsonMock,
-                this.httpClientMock);
+        this.objectUnderTest = new HttpBaseClient(this.gsonMock, this.httpClientMock,
+                this.httpRequestFactoryMock);
     }
 
     @Test
     public void get_happyDay_callsLichessApi() throws IllegalStatusCodeException, IOException,
             InterruptedException {
-        try (MockedStatic<HttpClient> mockedHttpClient = Mockito.mockStatic(HttpClient.class)) {
-            mockedHttpClient.when(HttpClient::newHttpClient)
-                    .thenReturn(this.httpClientMock);
 
-            this.httpClientMock.onGet(BASE_URL + URL)
-                    .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
-                    .doReturn(RESPONSE_BODY);
+        mockHttpRequestFactory();
+        this.httpClientMock.onGet(BASE_URL + URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturn(RESPONSE_BODY);
+        when(this.gsonMock.fromJson(RESPONSE_BODY, RESPONSE_CLASS)).thenReturn(AccountTestProvider
+                .getAccount());
 
-            when(this.gsonMock.fromJson(RESPONSE_BODY, RESPONSE_CLASS)).thenReturn(
-                    AccountTestProvider.getAccount());
+        Account result = this.objectUnderTest.get(URL, RESPONSE_CLASS);
 
-            Account result = this.objectUnderTest.get(URL, RESPONSE_CLASS);
+        assertEquals(AccountTestProvider.getAccount(), result);
+        this.httpClientMock.verify()
+                .get(BASE_URL + URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
 
-            assertEquals(AccountTestProvider.getAccount(), result);
-
-            this.httpClientMock.verify()
-                    .get(BASE_URL + URL)
-                    .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
-
-        }
     }
 
     @Test(expected = UnauthorizedException.class)
     public void get_unauthorized_throwsUnautorizedException() throws IllegalStatusCodeException,
             IOException, InterruptedException {
-        try (MockedStatic<HttpClient> mockedHttpClient = Mockito.mockStatic(HttpClient.class)) {
-            mockedHttpClient.when(HttpClient::newHttpClient)
-                    .thenReturn(this.httpClientMock);
 
-            this.httpClientMock.onGet(BASE_URL + URL)
-                    .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
-                    .doReturnStatus(401);
+        mockHttpRequestFactory();
+        this.httpClientMock.onGet(BASE_URL + URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturnStatus(401);
 
-            this.objectUnderTest.get(URL, RESPONSE_CLASS);
+        this.objectUnderTest.get(URL, RESPONSE_CLASS);
 
-        }
     }
 
     @Test(expected = IllegalStatusCodeException.class)
     public void get_unidentifiedStatusCode_throwsIllegalStatusCodeException()
             throws IllegalStatusCodeException, IOException, InterruptedException {
-        try (MockedStatic<HttpClient> mockedHttpClient = Mockito.mockStatic(HttpClient.class)) {
-            mockedHttpClient.when(HttpClient::newHttpClient)
-                    .thenReturn(this.httpClientMock);
+        mockHttpRequestFactory();
+        this.httpClientMock.onGet(BASE_URL + URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturnStatus(501);
 
-            this.httpClientMock.onGet(BASE_URL + URL)
-                    .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
-                    .doReturnStatus(501);
+        this.objectUnderTest.get(URL, RESPONSE_CLASS);
 
-            this.objectUnderTest.get(URL, RESPONSE_CLASS);
-
-        }
     }
 
+    private void mockHttpRequestFactory() {
+        when(this.httpRequestFactoryMock.createGetRequest(URL, Collections.emptyMap())).thenReturn(
+                createHttpRequest());
+    }
+
+    private HttpRequest createHttpRequest() {
+        return HttpRequest.newBuilder()
+                .GET()
+                .header("Authorization", "Bearer " + BEARER_TOKEN)
+                .uri(URI.create(BASE_URL + URL))
+                .build();
+    }
 }
