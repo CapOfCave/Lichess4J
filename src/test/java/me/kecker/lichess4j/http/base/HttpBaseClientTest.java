@@ -37,7 +37,8 @@ public class HttpBaseClientTest {
     @Before
     public void setup() {
         this.httpClientMock = new HttpClientMock();
-        this.objectUnderTest = new HttpBaseClient(BASE_URL, BEARER_TOKEN, gsonMock);
+        this.objectUnderTest = new HttpBaseClient(BASE_URL, BEARER_TOKEN, this.gsonMock,
+                this.httpClientMock);
     }
 
     @Test
@@ -80,10 +81,10 @@ public class HttpBaseClientTest {
 
         }
     }
-    
+
     @Test(expected = IllegalStatusCodeException.class)
-    public void get_unidentifiedStatusCode_throwsIllegalStatusCodeException() throws IllegalStatusCodeException,
-            IOException, InterruptedException {
+    public void get_unidentifiedStatusCode_throwsIllegalStatusCodeException()
+            throws IllegalStatusCodeException, IOException, InterruptedException {
         try (MockedStatic<HttpClient> mockedHttpClient = Mockito.mockStatic(HttpClient.class)) {
             mockedHttpClient.when(HttpClient::newHttpClient)
                     .thenReturn(this.httpClientMock);

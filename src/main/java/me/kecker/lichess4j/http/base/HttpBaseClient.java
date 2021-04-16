@@ -7,6 +7,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Collections;
+import java.util.Map;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
@@ -21,19 +23,26 @@ public class HttpBaseClient {
     private String bearerToken;
     @NonNull
     private Gson gson;
+    @NonNull
+    private HttpClient httpClient;
 
-    public <T> T get(String url, Class<T> entityClass) throws IOException, InterruptedException,
+    public <T> T get(String url, Class<T> responseClass) throws IOException, InterruptedException,
             IllegalStatusCodeException {
-        HttpClient client = HttpClient.newHttpClient();
+        return get(url, Collections.emptyMap(), responseClass);
+    }
+
+    public <T> T get(String url, Map<String, String> parameters, Class<T> responseClass)
+            throws IOException, InterruptedException, IllegalStatusCodeException {
+
         HttpRequest request = HttpRequest.newBuilder()
                 .header("Authorization", "Bearer " + this.bearerToken)
                 .uri(URI.create(this.baseUrl + url))
                 .build();
-        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+        HttpResponse<String> response = this.httpClient.send(request, BodyHandlers.ofString());
 
         validateStatusCode(response.statusCode());
 
-        return this.gson.fromJson(response.body(), entityClass);
+        return this.gson.fromJson(response.body(), responseClass);
 
     }
 
