@@ -30,6 +30,7 @@ public class HttpBaseClient {
 
     public <T> T get(String endpoint, String path, Class<T> responseClass) throws IOException,
             InterruptedException, IllegalStatusCodeException {
+        
         return get(endpoint, path, Collections.emptyMap(), responseClass);
     }
 
@@ -39,6 +40,13 @@ public class HttpBaseClient {
 
         return request(HttpMethod.GET, endpoint, path, parameters, responseClass, BodyPublishers
                 .noBody());
+    }
+
+    public <T> T post(String endpoint, String path, Map<String, String> parameters,
+            Class<T> responseClass, BodyPublisher bodyPublisher) throws IOException,
+            InterruptedException, IllegalStatusCodeException {
+        
+        return request(HttpMethod.POST, endpoint, path, parameters, responseClass, bodyPublisher);
     }
 
     private <T> T request(HttpMethod method, String endpoint, String path,

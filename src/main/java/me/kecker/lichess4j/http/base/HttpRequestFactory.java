@@ -22,6 +22,11 @@ public class HttpRequestFactory {
         return createRequest(HttpMethod.GET, endpoint, path, parameters, BodyPublishers.noBody());
     }
 
+    public HttpRequest createPostRequest(String endpoint, String path,
+            Map<String, String> parameters, BodyPublisher bodyPublisher) {
+        return createRequest(HttpMethod.POST, endpoint, path, parameters, bodyPublisher);
+    }
+
     public HttpRequest createRequest(HttpMethod method, String endpoint, String path,
             Map<String, String> parameters, BodyPublisher bodyPublisher) {
         return HttpRequest.newBuilder()
