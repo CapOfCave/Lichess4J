@@ -6,6 +6,7 @@ import me.kecker.lichess4j.http.base.HttpBaseClient;
 import me.kecker.lichess4j.http.base.HttpRequestFactory;
 import me.kecker.lichess4j.http.utils.GsonFactory;
 import me.kecker.lichess4j.services.AccountHttpService;
+import me.kecker.lichess4j.services.BotHttpService;
 import me.kecker.lichess4j.services.UsersHttpService;
 
 /**
@@ -14,6 +15,7 @@ import me.kecker.lichess4j.services.UsersHttpService;
 public class Lichess4J {
     private @NonNull AccountService accountService;
     private @NonNull UsersService usersService;
+    private @NonNull BotService botService;
 
     public Lichess4J(@NonNull String bearerToken) {
         HttpRequestFactory httpRequestFactory = new HttpRequestFactory(bearerToken);
@@ -22,14 +24,18 @@ public class Lichess4J {
 
         this.accountService = new AccountHttpService(httpBaseClient);
         this.usersService = new UsersHttpService(httpBaseClient);
-        
+        this.botService = new BotHttpService(httpBaseClient);
     }
 
     public AccountService account() {
         return this.accountService;
     }
-    
+
     public UsersService users() {
         return this.usersService;
+    }
+
+    public BotService bot() {
+        return this.botService;
     }
 }
