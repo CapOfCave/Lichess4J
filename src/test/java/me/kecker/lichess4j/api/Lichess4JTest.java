@@ -13,6 +13,7 @@ public class Lichess4JTest {
         Lichess4J lichess4j = new Lichess4J(BEARER_TOKEN);
         assertNotNull(lichess4j.account());
         assertNotNull(lichess4j.users());
+        assertNotNull(lichess4j.bot());
     }
 
 }
