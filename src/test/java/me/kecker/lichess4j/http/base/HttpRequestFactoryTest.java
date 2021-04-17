@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ public class HttpRequestFactoryTest {
     private static final Map<String, String> PARAMETERS = Map.of("a", "1", "b", "2");
     private static final Map<String, String> PARAMETERS_NOT_URL_ENCODED = Map.of("a", "+1&", "\\b/",
             "2");
+    private static final String BODY = "{\"body\": \"someValue\"}";
 
     private HttpRequestFactory objectUnderTest;
 
@@ -59,7 +61,7 @@ public class HttpRequestFactoryTest {
         assertThat(uri.toString()).contains("a=%2B1%26");
         assertThat(uri.toString()).contains("%5Cb%2F=2");
     }
-    
+
     @Test
     public void createURI_pathIsNull_returnsURI() {
         URI uri = this.objectUnderTest.createURI(ENDPOINT, null, Collections.emptyMap());
@@ -78,6 +80,7 @@ public class HttpRequestFactoryTest {
         assertThat(request.method()).isEqualTo("GET");
         assertThat(request.uri()
                 .toString()).isEqualTo(FULL_PATH);
+        assertBodyIsEmpty(request);
     }
 
     @Test
@@ -92,5 +95,44 @@ public class HttpRequestFactoryTest {
         assertThat(request.method()).isEqualTo("GET");
         assertThat(request.uri()
                 .toString()).isEqualTo(BASE_URL + ENDPOINT + "?");
+        assertBodyIsEmpty(request);
+    }
+
+    @Test
+    public void createPostRequest_noBody_returnsCorrectRequest() {
+        HttpRequest request = this.objectUnderTest.createPostRequest(ENDPOINT, PATH, Collections
+                .emptyMap(), BodyPublishers.noBody());
+
+        assertThat(request.headers()
+                .allValues("Authorization")).isEqualTo(List.of("Bearer " + BEARER_TOKEN));
+        assertThat(request.headers()
+                .map()
+                .size()).isEqualTo(1);
+        assertThat(request.method()).isEqualTo("POST");
+        assertThat(request.uri()
+                .toString()).isEqualTo(FULL_PATH);
+        assertBodyIsEmpty(request);
+    }
+
+    @Test
+    public void createPostRequest_withBody_returnsCorrectRequest() {
+        HttpRequest request = this.objectUnderTest.createPostRequest(ENDPOINT, PATH, Collections
+                .emptyMap(), BodyPublishers.ofString(BODY));
+
+        assertThat(request.headers()
+                .allValues("Authorization")).isEqualTo(List.of("Bearer " + BEARER_TOKEN));
+        assertThat(request.headers()
+                .map()
+                .size()).isEqualTo(1);
+        assertThat(request.method()).isEqualTo("POST");
+        assertThat(request.uri()
+                .toString()).isEqualTo(FULL_PATH);
+        assertThat(request.bodyPublisher()
+                .orElseThrow()
+                .contentLength()).isEqualTo(BODY.length());
+    }
+
+    private void assertBodyIsEmpty(HttpRequest request) {
+        assertThat(request.bodyPublisher().orElseThrow().contentLength()).isZero();
     }
 }

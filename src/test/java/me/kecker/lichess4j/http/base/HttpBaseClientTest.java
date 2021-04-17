@@ -1,7 +1,10 @@
 package me.kecker.lichess4j.http.base;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.gson.Gson;
@@ -10,18 +13,22 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublisher;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.util.Collections;
 import java.util.Map;
+import javax.lang.model.type.NullType;
 import me.kecker.lichess4j.http.exceptions.IllegalStatusCodeException;
 import me.kecker.lichess4j.http.exceptions.UnauthorizedException;
 import me.kecker.lichess4j.model.account.Account;
 import me.kecker.lichess4j.test.providers.AccountTestProvider;
+import org.hamcrest.text.IsEmptyString;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -139,16 +146,57 @@ public class HttpBaseClientTest {
         assertBodyWasEmpty();
     }
 
+    @Test
+    public void post_withoutExpectingResponse_callsLichessAPI() throws IllegalStatusCodeException,
+            IOException, InterruptedException {
+        mockHttpRequestFactory(HttpMethod.POST, PATH, PARAMETERS, FULL_URL);
+        this.httpClientMock.onPost(FULL_URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturn(RESPONSE_BODY);
+
+        NullType response = this.objectUnderTest.post(ENDPOINT, PATH, PARAMETERS,
+                HttpBaseClient.NO_RESPONSE, BodyPublishers.noBody());
+
+        assertNull(response);
+        this.httpClientMock.verify()
+                .post(FULL_URL)
+                .withBody(new IsEmptyString())
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
+        verify(this.gsonMock, never()).fromJson(Mockito.anyString(), Mockito.any());
+        assertBodyWasEmpty();
+    }
+    
+    @Test
+    public void post_withoutNullResponseParameter_callsLichessAPI() throws IllegalStatusCodeException,
+            IOException, InterruptedException {
+        mockHttpRequestFactory(HttpMethod.POST, PATH, PARAMETERS, FULL_URL);
+        this.httpClientMock.onPost(FULL_URL)
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN)
+                .doReturn(RESPONSE_BODY);
+
+        NullType response = this.objectUnderTest.post(ENDPOINT, PATH, PARAMETERS,
+                null, BodyPublishers.noBody());
+
+        assertNull(response);
+        this.httpClientMock.verify()
+                .post(FULL_URL)
+                .withBody(new IsEmptyString())
+                .withHeader("Authorization", "Bearer " + BEARER_TOKEN);
+        verify(this.gsonMock, never()).fromJson(Mockito.anyString(), Mockito.any());
+        assertBodyWasEmpty();
+    }
+
+
     private void mockHttpRequestFactory(HttpMethod httpMethod, String path,
             Map<String, String> parameters, String returnedUrl) {
         when(this.httpRequestFactoryMock.createRequest(eq(httpMethod), eq(ENDPOINT), eq(path), eq(
                 parameters), this.bodyPublisherCaptor.capture())).thenReturn(createHttpRequest(
-                        returnedUrl));
+                        httpMethod, returnedUrl));
     }
 
-    private HttpRequest createHttpRequest(String fullUrl) {
+    private HttpRequest createHttpRequest(HttpMethod httpMethod, String fullUrl) {
         return HttpRequest.newBuilder()
-                .GET()
+                .method(httpMethod.getKey(), BodyPublishers.noBody())
                 .header("Authorization", "Bearer " + BEARER_TOKEN)
                 .uri(URI.create(fullUrl))
                 .build();
