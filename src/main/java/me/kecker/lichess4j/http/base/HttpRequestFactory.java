@@ -3,6 +3,8 @@ package me.kecker.lichess4j.http.base;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublisher;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,8 +19,14 @@ public class HttpRequestFactory {
 
     public HttpRequest createGetRequest(String endpoint, String path,
             Map<String, String> parameters) {
+        return createRequest(HttpMethod.GET, endpoint, path, parameters, BodyPublishers.noBody());
+    }
+
+    public HttpRequest createRequest(HttpMethod method, String endpoint, String path,
+            Map<String, String> parameters, BodyPublisher bodyPublisher) {
         return HttpRequest.newBuilder()
                 .header("Authorization", "Bearer " + this.bearerToken)
+                .method(method.getKey(), bodyPublisher)
                 .uri(createURI(endpoint, path, parameters))
                 .build();
     }
