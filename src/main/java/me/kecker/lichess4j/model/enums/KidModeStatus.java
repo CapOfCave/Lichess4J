@@ -4,10 +4,16 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum KidModeStatus {
-    KID,
-    NO_KID;
+    KID(true),
+    NO_KID(false);
+
+    private boolean value;
 
     public static KidModeStatus of(boolean value) {
         return value ? KID : NO_KID;
+    }
+    
+    public boolean getValue() {
+        return this.value;
     }
 }
