@@ -1,6 +1,8 @@
 package me.kecker.lichess4j.services;
 
 import java.io.IOException;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import me.kecker.lichess4j.api.AccountService;
@@ -49,5 +51,12 @@ public class AccountHttpService implements AccountService {
         KidModeStatusWrapper kidModeStatusResponse = this.httpBaseClient.get(ENDPOINT, "kid",
                 KidModeStatusWrapper.class);
         return KidModeStatus.of(kidModeStatusResponse.getKidModeStatus());
+    }
+
+    @Override
+    public void setKidModeStatus(KidModeStatus newKidModeStatus) throws IllegalStatusCodeException,
+            IOException, InterruptedException {
+        this.httpBaseClient.post(ENDPOINT, "kid", Map.of("v", Boolean.toString(newKidModeStatus
+                .getValue())), HttpBaseClient.NO_RESPONSE, BodyPublishers.noBody());
     }
 }

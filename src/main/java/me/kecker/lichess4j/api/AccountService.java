@@ -17,7 +17,9 @@ public interface AccountService {
     Preferences getPreferenes() throws IllegalStatusCodeException, IOException,
             InterruptedException;
 
-    KidModeStatus getKidModeStatus()
-            throws IllegalStatusCodeException, IOException,
+    KidModeStatus getKidModeStatus() throws IllegalStatusCodeException, IOException,
             InterruptedException;
+
+    void setKidModeStatus(KidModeStatus newKidModeStatus) throws IllegalStatusCodeException,
+            IOException, InterruptedException;
 }
