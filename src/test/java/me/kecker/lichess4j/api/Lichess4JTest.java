@@ -14,6 +14,7 @@ public class Lichess4JTest {
         assertNotNull(lichess4j.account());
         assertNotNull(lichess4j.users());
         assertNotNull(lichess4j.bot());
+        assertNotNull(lichess4j.board());
     }
 
 }
