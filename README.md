@@ -15,7 +15,7 @@ A java wrapper for the https://lichess.org/ api
   - [x] Set my kid mode status
 - [ ] Users
   - [x] Get real-time users status
-  - [ ] Get all top 100
+  - [ ] Get all top 10
   - [ ] Get one leaderboard
   - [ ] Get user public data
   - [ ] Get rating history of a user
@@ -60,12 +60,12 @@ A java wrapper for the https://lichess.org/ api
   - [ ] Stream Board game state
   - [ ] Make a Board move
   - [ ] Write in the chat
-  - [ ] Abort a game
+  - [x] Abort a game
   - [ ] Resign a game
   - [ ] Handle draw offers
 - [ ] Bot
   - [ ] Stream incoming events
-  - [ ] Upgrade to Bot acccount
+  - [x] Upgrade to Bot acccount
   - [ ] Stream Bot game state
   - [ ] Make a Bot move
   - [ ] Write in the chat
