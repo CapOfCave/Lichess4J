@@ -1,130 +1,35 @@
-
 [![Build Status](https://github.com/CapOfCave/Lichess4J/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/CapOfCave/Lichess4J/actions?query=workflow%3A"Java+CI"+branch%3Amaster)
 [![Codecov Coverage Status](https://codecov.io/gh/CapOfCave/Lichess4J/branch/master/graph/badge.svg)](https://codecov.io/gh/CapOfCave/Lichess4J)
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/CapOfCave/Lichess4J.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CapOfCave/Lichess4J/context:java)
 
 # Lichess4J
-A java wrapper for the https://lichess.org/ api
+> A java wrapper for the [Lichess API](https://lichess.org/api)
 
-## Lichess endpoint coverage
-- [x] Account
-  - [x] Get my profile
-  - [x] Get my email address
-  - [x] Get my preferences
-  - [x] Get my kid mode status
-  - [x] Set my kid mode status
-- [ ] Users
-  - [x] Get real-time users status
-  - [ ] Get all top 10
-  - [ ] Get one leaderboard
-  - [ ] Get user public data
-  - [ ] Get rating history of a user
-  - [ ] Get user activity
-  - [ ] Get users by ID
-  - [ ] Get members of a team
-  - [ ] Get live streamers
-  - [ ] Get crosstable
-- [ ] Relations
-  - [ ] Get users followed by a user
-  - [ ] Get users who follow a user
-- [ ] Games
-  - [ ] Export one game
-  - [ ] Export ongoing game of a user
-  - [ ] Export games of a user
-  - [ ] Export games by IDs
-  - [ ] Stream current games
-  - [ ] Get ongoing games
-  - [ ] Get current TV games
-  - [ ] Stream current TV game
-  - [ ] Import one game
-- [ ] Puzzles
-  - [ ] Get the daily puzzle
-  - [ ] Get your puzzle activity
-  - [ ] Get your puzzle dashboard
-  - [ ] Get the storm dashboard of a player
-- [ ] Teams
-  - [ ] Get team swiss tournaments
-  - [ ] Get a single team
-  - [ ] Get populat teams
-  - [ ] Teams of a player
-  - [ ] Search teams
-  - [ ] Get members of a team
-  - [ ] Get team Arena tournaments
-  - [ ] Join a team
-  - [ ] Leave a team
-  - [ ] Kick a user from your team
-  - [ ] Message all members
-- [ ] Board
-  - [ ] Stream incoming events
-  - [ ] Create a seek
-  - [ ] Stream Board game state
-  - [ ] Make a Board move
-  - [ ] Write in the chat
-  - [x] Abort a game
-  - [ ] Resign a game
-  - [ ] Handle draw offers
-- [ ] Bot
-  - [ ] Stream incoming events
-  - [x] Upgrade to Bot acccount
-  - [ ] Stream Bot game state
-  - [ ] Make a Bot move
-  - [ ] Write in the chat
-  - [ ] Abort a game
-  - [ ] Resign a game
-- [ ] Challenges
-  - [ ] Create a challenge
-  - [ ] Accept a challenge
-  - [ ] Decline a challenge
-  - [ ] Cancel a challenge
-  - [ ] Challenge the AI
-  - [ ] Open-ended challenge
-  - [ ] Start clocks of a game
-  - [ ] Add time to the opponent clock
-  - [ ] Create an adming challenge
-- [ ] Bulk pairings
-  - [ ] View upcoming bulk pairings
-  - [ ] Create a bulk pairing
-  - [ ] Manually start clocks
-  - [ ] Cancel a bulk pairing
-- [ ] Arena tournaments
-  - [ ] Get current tournaments
-  - [ ] Create a new Arena tournament
-  - [ ] Get info about an Arena tournament
-  - [ ] Update an Arena tournament
-  - [ ] Update a team battle
-  - [ ] Export games of an Arena tournament
-  - [ ] Get results of an Arena tournament
-  - [ ] Get team standing of a team battle
-  - [ ] Get tournaments created by a user
-  - [ ] Get team Arena tournaments
-- [ ] Swiss tournaments
-  - [ ] Create a new Swiss tornament
-  - [ ] Export TRF of a Swiss tournament
-  - [ ] Export games of a Swiss tournament
-  - [ ] Get results of a swiss tournament
-  - [ ] Get team swiss tournaments
-- [ ] Simuls
-  - [ ] Get current simuls
-- [ ] Studies
-  - [ ] Export one study chapter
-  - [ ] Export all chapters
-  - [ ] Export all studies of a user
-- [ ] Messaging
-  - [ ] Send a private message
-- [ ] Broadcasts
-  - [ ] Get official broadcasts
-  - [ ] Create a broadcast
-  - [ ] Get your broadcast
-  - [ ] Update your broadcast
-  - [ ] Push PGN to your broadcast
-- [ ] Analysis
-  - [ ] Get cloud evaluation of a position
-- [ ] Opening Explorer
-  - [ ] Master games
-  - [ ] Lichess games
-  - [ ] OTB master games
-  - [ ] Opening explorer stats
-- [ ] Tablebase
-  - [ ] Tablebase lookup
-  - [ ] Tablebase lookup for Atomic chess
-  - [ ] Tablebase lookup for Antichess
+This library aims to create a general purpase java wrapper for the Lichess API.
+
+## Installing / Getting started
+
+This project is still in the early stages of developement. This section will be updated with installation guidelines once a minimum viable product is available.
+
+## Features
+
+For a full list of currently implemented features, please have a look at the [endpoint coverage documentation](https://github.com/CapOfCave/Lichess4J/blob/master/docs/endpoint-coverage.md) .
+
+## Contributing
+
+Do you want to contribute to this library? We'd love your help. Please refer to our [contribution guideline](https://github.com/CapOfCave/Lichess4J/blob/master/CONTRIBUTING.md)
+
+### Building locally
+
+If you want to run this project locally, please go through the following steps:
+
+```shell
+git clone https://github.com/CapOfCave/Lichess4J.git
+cd Lichess4J/
+mvn clean install
+```
+
+This will clone this repository, perform tests and build it.
+
+## Licensing
+The code in this project is licensed under MIT license. See the [LICENSE](https://github.com/CapOfCave/Lichess4J/blob/master/LICENSE) file for a detailed description of rights and limitations when using this project.
