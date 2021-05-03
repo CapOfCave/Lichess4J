@@ -59,7 +59,7 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 
 All git commit messages should follow the [Conventional Commits guideline](https://www.conventionalcommits.org/en/v1.0.0/).
 
-The allowed commit types include `build:`, `chore:`, `ci:`, `docs:`, `style:`, `refactor:` and `test`. If a different commit type is required to describe an action, please consider consulting a project maintainer.
+The allowed commit types include `add:``build:`, `chore:`, `ci:`, `docs:`, `feat`, `fix`, `style:`, `refactor:` and `test`. If a different commit type is required to describe an action, please first consider consulting a project maintainer.
 
 ### Code Style
 
