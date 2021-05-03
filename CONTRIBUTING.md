@@ -10,6 +10,7 @@ Reading and following these guidelines will help us make the contribution proces
 * [Getting Started](#getting-started)
     * [Issues](#issues)
     * [Pull Requests](#pull-requests)
+    * [Code guidelines](#code-guidelines)
 * [Contact](#contact)
 * [Attribution](#attribution)
 
@@ -51,6 +52,18 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 5. Following any formatting and testing guidelines specific to this repo
 6. Push changes to your fork
 7. Open a PR in our repository and follow the PR template so that we can efficiently review the changes.
+
+### Code guidelines
+
+#### Commit messages
+
+All git commit messages should follow the [Conventional Commits guideline](https://www.conventionalcommits.org/en/v1.0.0/).
+
+The allowed commit types include `build:`, `chore:`, `ci:`, `docs:`, `style:`, `refactor:` and `test`. If a different commit type is required to describe an action, please consider consulting a project maintainer.
+
+### Code Style
+
+In the near future, this project will switch to using the google java style. Information on how to apply the style in your favorite IDE can be found [here](https://github.com/google/google-java-format). If you're reading this, this change has not happened yet, so you can simply ignore this chapter.
 
 ## Contact
 
